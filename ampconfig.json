@@ -1,0 +1,19 @@
+{
+  "dataServiceGeneratorVersion": "0.11.2",
+  "appInfo": {
+    "name": "Project-DineBrand",
+    "description": "",
+    "version": "cbwrwn3l",
+    "id": "ckzzhh0ya33925501s6h31ax2am",
+    "url": "https://app.amplication.com/ckzzhh0ya33925501s6h31ax2am",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "",
+      "dbPassword": "admin",
+      "dbPort": 5432,
+      "dbUser": "admin",
+      "appId": "ckzzhh0ya33925501s6h31ax2am",
+      "authProvider": "Jwt"
+    }
+  }
+}

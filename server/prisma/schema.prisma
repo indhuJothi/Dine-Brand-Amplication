@@ -1,0 +1,58 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("POSTGRESQL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     String[]
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Homepage {
+  createdAt    DateTime    @default(now())
+  email        String?
+  freedomPay   FreedomPay? @relation(fields: [freedomPayId], references: [id])
+  freedomPayId String?
+  id           String      @id @default(cuid())
+  mobileNumber String?
+  password     String?
+  updatedAt    DateTime    @updatedAt
+  username     String
+}
+
+model FreedomPay {
+  address      Address?                    @relation(fields: [addressId], references: [id])
+  addressId    String?
+  createdAt    DateTime                    @default(now())
+  freedomOfPay EnumFreedomPayFreedomOfPay?
+  homepages    Homepage[]
+  id           String                      @id @default(cuid())
+  updatedAt    DateTime                    @updatedAt
+}
+
+model Address {
+  address     Address?     @relation(name: "AddressOnAddresses", fields: [addressId], references: [id])
+  addressId   String?
+  addresses   Address[]    @relation(name: "AddressOnAddresses")
+  createdAt   DateTime     @default(now())
+  freedomPays FreedomPay[]
+  id          String       @id @default(cuid())
+  location    String?
+  pinCode     String?
+  updatedAt   DateTime     @updatedAt
+}
+
+enum EnumFreedomPayFreedomOfPay {
+  Yes
+  No
+}
